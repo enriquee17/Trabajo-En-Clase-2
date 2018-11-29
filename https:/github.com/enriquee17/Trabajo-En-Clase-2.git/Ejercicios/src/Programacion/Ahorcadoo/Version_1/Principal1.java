@@ -2,11 +2,12 @@ package Programacion.Ahorcadoo.Version_1;
 
 import javax.swing.JOptionPane;
 
-public class Principal {
+
+public class Principal1 {
 
 	public static void main(String[] args) {
 		
-		
+		boolean acierto=false;
 		String  palabras [] = new String [] {"Perro", "Gato", "Raton"};
 		
 		String palabra = palabras[(int)Math.round(Math.random()*(palabras.length-1))];
@@ -14,7 +15,7 @@ public class Principal {
 		
 		//String palabraOculta = palabra;
 		char coincidencia [] = new char [palabra.length()];
-		
+		int contFallos=0;
 		for (int i = 0; i < coincidencia.length; i++) {
 			coincidencia[i] = '_';
 			System.out.print(coincidencia[i]+" ");
@@ -22,23 +23,39 @@ public class Principal {
 			
 		
 		}
-		int contFallos=0;
+		String introduceUsuario;
 		do {
-			String introduceUsuario = JOptionPane.showInputDialog("Introduce un caracter o una palabra");
+			acierto=false;
+			 introduceUsuario = JOptionPane.showInputDialog("Introduce un caracter o una palabra");
 			
 				
 					
 				if (introduceUsuario.length()==1) {
-					for (int i = 0; i < coincidencia.length; i++) {
-						coincidencia[i] = '_';
-						System.out.println();
-						System.out.print(coincidencia[i]+" ");
+					 System.out.println();
+					for (int i = 0; i < palabra.length(); i++) {
+						 char charUsuario = introduceUsuario.charAt(0);
+						 char palabra1 = palabra.charAt(i);
+						 if (charUsuario == palabra1) {
+							 coincidencia[i]=charUsuario;
+							 acierto=true;
+							 for (int j = 0; j < palabra.length(); j++) {
+								 System.out.print(coincidencia[i]+" ");
+							 }
+						 } 
+						
+						 
+						 
+					}
+					
+					if (acierto==false) {
+						
+						contFallos++;
+						
 					}
 				}
 				else {
 					if (introduceUsuario.equals(palabra)) {
 						JOptionPane.showMessageDialog(null, "Enhorabuena, ha acertado la palabra");
-						System.exit(0);
 					}
 					
 					else {
@@ -47,7 +64,7 @@ public class Principal {
 						 }
 					}
 		      
-		}while(!(contFallos == 2));
+		}while(!((introduceUsuario.equals(palabra))||(contFallos == 2)));
 	}	
 
 
