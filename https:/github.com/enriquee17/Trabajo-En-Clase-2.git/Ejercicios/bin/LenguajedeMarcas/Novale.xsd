@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="youtube" type="tipoYoutube"/>
+	
+	<xs:complexType name="tipoYoutube">
+	
+		<xs:sequence>
+		
+			<xs:element name="videos" type="tipoVideos"/>
+			<xs:element name="publicidad" type="tipoPublicidad"/>
+			<xs:element name="idiomasDisponibles" type="tipoIdiomas"/>
+		
+		</xs:sequence>
+	
+	</xs:complexType>
+	
+	<xs:complexType name="tipoVideos">
+	
+		<xs:sequence>
+		
+			<xs:element name="video" type="tipoVideo"/>
+			
+			
+		</xs:sequence>	
+	
+	</xs:complexType>
+	
+	<xs:complexType name="tipoVideo" mixed="true">
+	
+		<xs:all>
+			<xs:element name ="url" type="xs:string"/>
+			<xs:element name ="visualizaciones" type="xs:string"/>
+			<xs:element name="comentarios" type="tipoComentarios"/>
+			<xs:element name="subscriptores" type="tipoSubscriptores"/>
+			
+		
+		</xs:all>
+	
+	</xs:complexType>
+	
+	<xs:complexType name="tipoComentarios">
+		<xs:sequence>
+			<xs:element name="buenos" type="xs:integer"/>
+			<xs:element name="malos" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tipoSubscriptores">
+		
+		<xs:sequence>
+		
+			<xs:element name="subscriptor" type="tipoSubscriptor"/>
+			
+				
+		</xs:sequence>
+	
+	</xs:complexType>
+	<xs:complexType name="tipoSubscriptor" mixed="true">
+		
+	
+		<xs:sequence>
+		
+			<xs:element name ="fechaSubscripcion" type="tipoFechaSubscripcion"/>
+			<xs:element name="comentarios" type="tipoComentarioF"/>
+			<xs:element name="correoElectronico" type="tipoCorreo"/>
+			<xs:element name="idioma" type="tipoIdioma"/>
+		
+		</xs:sequence>
+	
+	</xs:complexType>
+	<xs:complexType name="tipoFechaSubscripcion">
+	
+		<xs:attribute name="dia">
+		
+			<xs:simpleType>
+			
+				<xs:restriction base="xs:integer">
+				
+					<xs:enumeration value="12"/>
+				
+				</xs:restriction>
+			
+			</xs:simpleType>
+		
+		</xs:attribute>
+		<xs:attribute name="mes">
+		
+			<xs:simpleType>
+			
+				<xs:restriction base="xs:string">
+				
+					<xs:enumeration value="febrero"/>
+				
+				</xs:restriction>
+			
+			</xs:simpleType>
+		
+		</xs:attribute>
+		<xs:attribute name="anyo">
+		
+			<xs:simpleType>
+			
+				<xs:restriction base="xs:integer">
+			
+					<xs:enumeration value="2015"/>
+					<xs:enumeration value="2016"/>
+					<xs:enumeration value="2017"/>
+					<xs:enumeration value="2018"/>
+			
+				</xs:restriction>
+			
+			</xs:simpleType>
+		
+		</xs:attribute>
+	
+	</xs:complexType>
+	
+	<xs:complexType name="tipoComentarioF">
+	
+		<xs:attribute name="cantidad">
+		
+			<xs:simpleType>
+			
+				<xs:restriction base="xs:integer">
+				
+					<xs:enumeration value="12"></xs:enumeration>
+				
+				</xs:restriction>
+			
+			</xs:simpleType>
+		
+		</xs:attribute>
+	
+	</xs:complexType>
+	
+	<xs:complexType name="tipoCorreo">
+	<xs:sequence>
+		
+			<xs:element name="usuario" type="xs:string"/>
+			<xs:element name="servidor" type="tipoServidor"/>	
+			
+			
+		
+		</xs:sequence>
+	
+		<xs:attribute name="completo">
+			<xs:simpleType>
+			
+				<xs:restriction base="xs:string">
+				
+					<xs:enumeration value="rafa@gmail.com"></xs:enumeration>
+				
+				</xs:restriction>
+			
+			</xs:simpleType>
+			
+		</xs:attribute>
+		
+		
+	</xs:complexType>
+	<xs:complexType name="tipoServidor">
+	
+		<xs:choice>
+			<xs:element name="gmail" type="xs:string"/>
+			<xs:element name="hotmail" type="xs:string"/>
+			<xs:element name="yahoo" type="xs:string"/>
+		</xs:choice>
+	
+	</xs:complexType>
+	<xs:complexType name="tipoIdioma"></xs:complexType>
+	
+	<xs:complexType name="tipoPublicidad"></xs:complexType>
+	<xs:complexType name="tipoIdiomas"></xs:complexType>
+</xs:schema>
